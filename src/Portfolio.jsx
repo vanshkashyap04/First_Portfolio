@@ -95,7 +95,7 @@ const Portfolio = () => {
               </a>
             </p>
             <a
-              href="/resume/VANSH-NEW-RESUME-JULY-2025.pdf"
+              href="/resume/VANSH-RESUME-UPDATED.pdf"
               download
               className="inline-block mb-6 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition"
             >
