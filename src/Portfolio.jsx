@@ -36,22 +36,76 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
-      <section className="bg-gradient-to-br from-gray-950 to-black py-20 px-6 text-center">
-        <div className="max-w-xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h3 className="text-2xl font-bold text-indigo-300 mb-2">🚀 Want to see how I grow in real time?</h3>
-            <p className="text-gray-400 text-lg mb-8">
-              <a href="https://linkedin.com/in/vansh-kashyap-83b203228" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-200 underline">
-                Watch my journey on LinkedIn
-              </a>
-            </p>
-            <a href="/resume/VANSH-NEW-RESUME-JULY-2025.pdf" download className="inline-block mb-6 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition">
-              📄 Download My Resume
-            </a>
-            <p className="text-lg text-gray-300">Or email me at <a href="mailto:Kashyapvansh123@gmail.com" className="text-purple-300 underline hover:text-purple-200 ml-1">Kashyapvansh123@gmail.com</a></p>
-          </motion.div>
-        </div>
-      </section>
+<section className="bg-gradient-to-br from-gray-950 to-black py-20 px-6 text-center text-white">
+  <div className="max-w-xl mx-auto">
+    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <h3 className="text-2xl font-bold text-indigo-300 mb-2">🚀 Want to see how I grow in real time?</h3>
+      <p className="text-gray-400 text-lg mb-8">
+        <a
+          href="https://linkedin.com/in/vansh-kashyap-83b203228"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-200 underline"
+        >
+          Watch my journey on LinkedIn
+        </a>
+      </p>
+      <a
+        href="/resume/VANSH-NEW-RESUME-JULY-2025.pdf"
+        download
+        className="inline-block mb-6 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition"
+      >
+        📄 Download My Resume
+      </a>
+      <p className="text-lg text-gray-300">
+        Or email me at
+        <a href="mailto:Kashyapvansh123@gmail.com" className="text-purple-300 underline hover:text-purple-200 ml-1">
+          Kashyapvansh123@gmail.com
+        </a>
+      </p>
+    </motion.div>
+
+    {/* Contact Form */}
+    <div className="mt-12">
+      <h3 className="text-xl font-semibold text-indigo-300 mb-4">📬 Or send me a message directly here:</h3>
+
+      <form
+        action="https://formspree.io/f/xqabrgoz"
+        method="POST"
+        onSubmit={() => alert('✅ Message sent successfully!')}
+        className="space-y-4 text-left"
+      >
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="5"
+          required
+          className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <button
+          type="submit"
+          className="bg-purple-600 px-6 py-2 text-white rounded hover:bg-purple-700 transition w-full"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
       <footer className="bg-black text-center py-6 border-t border-gray-700 text-sm text-gray-500">
         &copy; {new Date().getFullYear()} Vansh Kashyap • Full of code, curiosity, and caffeine ☕
       </footer>
