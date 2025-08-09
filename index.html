@@ -1,27 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta property="og:title" content="Vansh Kashyap | Frontend Developer" />
-    <meta property="og:description" content="Check out my portfolio and follow my journey in tech — React, Tailwind, storytelling & more." />
-    <meta property="og:url" content="https://vanshka-portfolio.netlify.app" />
-    <meta property="og:image" content="https://vanshka-portfolio.netlify.app/preview.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Vansh Kashyap"/>
-    <title>Vansh Portfolio</title>
-    <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-BZSW6H5NG3');
-</script>
-<link rel="icon" type="image/png" href="/favicon.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vansh Kashyap | Growth & Fitness Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-5xl md:text-7xl font-bold mb-4">Vansh Kashyap</h1>
+    <p class="text-xl md:text-2xl max-w-xl mb-8">
+      Growth mindset | Fitness Enthusiast | Career Developer
+    </p>
+    <a href="#projects" class="px-8 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
+      View Projects
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="max-w-4xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-semibold mb-6 border-b-2 border-indigo-600 inline-block">
+      About Me
+    </h2>
+    <p class="text-gray-300 leading-relaxed text-lg">
+      I’m Vansh, passionate about personal growth, fitness, and career development. My journey blends tech skills with a mindset focused on constant evolution and discipline. I build projects that reflect my learning and values.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="bg-gray-800 py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl font-semibold mb-8 border-b-2 border-indigo-600 inline-block text-white">
+        Skills
+      </h2>
+      <ul class="grid grid-cols-2 md:grid-cols-4 gap-6 text-indigo-300 text-lg">
+        <li>JavaScript</li>
+        <li>HTML & CSS (Tailwind)</li>
+        <li>Python</li>
+        <li>Flask (Basic)</li>
+        <li>Git & GitHub</li>
+        <li>DSA Basics</li>
+        <li>Growth Mindset</li>
+        <li>Fitness & Nutrition</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="max-w-5xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-semibold mb-10 border-b-2 border-indigo-600 inline-block">
+      Projects
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold mb-2">First Portfolio</h3>
+        <p class="text-gray-300 mb-4">
+          My initial portfolio built with HTML, Tailwind CSS, and JavaScript.
+        </p>
+        <a href="https://github.com/vanshkashyap04/First_Portfolio" target="_blank" class="text-indigo-400 hover:underline">
+          View on GitHub
+        </a>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold mb-2">Decentralized Voting System</h3>
+        <p class="text-gray-300 mb-4">
+          Blockchain-based secure voting system built as a BTech project.
+        </p>
+        <a href="#" target="_blank" class="text-indigo-400 hover:underline">
+          Coming soon
+        </a>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold mb-2">Personal Blog</h3>
+        <p class="text-gray-300 mb-4">
+          A blog sharing growth mindset tips and fitness routines.
+        </p>
+        <a href="#" target="_blank" class="text-indigo-400 hover:underline">
+          Coming soon
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gray-800 py-20 px-6">
+    <div class="max-w-lg mx-auto text-center">
+      <h2 class="text-4xl font-semibold mb-8 border-b-2 border-indigo-600 inline-block">
+        Contact Me
+      </h2>
+      <form id="contactForm" class="flex flex-col gap-4 text-gray-300">
+        <input type="text" name="name" placeholder="Your Name" required
+               class="p-3 rounded bg-gray-700 focus:outline-indigo-500" />
+        <input type="email" name="email" placeholder="Your Email" required
+               class="p-3 rounded bg-gray-700 focus:outline-indigo-500" />
+        <textarea name="message" rows="5" placeholder="Your Message" required
+                  class="p-3 rounded bg-gray-700 focus:outline-indigo-500"></textarea>
+        <button type="submit"
+                class="bg-indigo-600 hover:bg-indigo-700 transition rounded py-3 font-semibold">
+          Send Message
+        </button>
+      </form>
+      <p id="formResponse" class="mt-4 text-green-400 hidden"></p>
+    </div>
+  </section>
+
+  <footer class="text-center py-6 text-gray-500">
+    &copy; 2025 Vansh Kashyap. All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const responseMsg = document.getElementById('formResponse');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('http://localhost:5000/contact', {
+          method: 'POST',
+          body: formData,
+        });
+        const data = await res.json();
+        if (res.ok) {
+          responseMsg.textContent = data.message;
+          responseMsg.classList.remove('hidden');
+          form.reset();
+        } else {
+          responseMsg.textContent = 'Failed to send message.';
+          responseMsg.classList.remove('hidden');
+          responseMsg.classList.add('text-red-400');
+        }
+      } catch (error) {
+        responseMsg.textContent = 'Error: Could not send message.';
+        responseMsg.classList.remove('hidden');
+        responseMsg.classList.add('text-red-400');
+      }
+    });
+  </script>
+</body>
 </html>
