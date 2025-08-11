@@ -1,139 +1,330 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vansh Kashyap | Growth & Fitness Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vansh Kashyap — Portfolio (stable)</title>
+  <meta name="description" content="Vansh Kashyap — Frontend & AI Automation | Portfolio" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{ --bg:#050505; --card:#0f0f10; --muted:#9aa4ab; --accent:#00d4ff; --maxw:1100px }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:#e6eef3;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    a{color:var(--accent);text-decoration:none}
+    main{max-width:var(--maxw);margin:30px auto;padding:28px}
+
+    /* simple responsive nav */
+    .nav{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:center;pointer-events:none}
+    .nav-inner{width:100%;max-width:var(--maxw);pointer-events:all;background:transparent;display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7bffec);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:800;color:#020617}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{color:#bcd7e3;padding:8px 10px;border-radius:8px;font-weight:600}
+
+    header.hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:80px 0}
+    .eyebrow{color:var(--muted);font-weight:600;margin-bottom:12px}
+    h1{font-family:Poppins;font-size:44px;line-height:1.02;margin:0 0 10px}
+    .lead{color:#cfeefb;opacity:0.95;font-weight:500;margin-bottom:18px}
+    .btn{background:linear-gradient(90deg,var(--accent),#7bffec);color:#021018;padding:10px 14px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+    .ghost{border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    /* cards, sections */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.03)}
+    section{margin-top:72px}
+    .section-head{display:flex;align-items:end;gap:12px}
+    .section-title{font-family:Poppins;font-size:22px}
+    .section-sub{color:var(--muted);font-size:14px}
+
+    .about{display:flex;gap:24px;align-items:center}
+    .avatar{width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,#06121a 0%, rgba(0,212,255,0.06) 100%);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:800;color:var(--accent);font-size:28px}
+
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:10px}
+    .skill{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    .contact-card{display:grid;gap:12px;padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.03)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:#e6eef3}
+    textarea{min-height:120px}
+
+    footer{margin:40px 0 80px;color:var(--muted);font-size:14px;text-align:center}
+
+    @media(max-width:880px){header.hero{grid-template-columns:1fr;padding:40px 0}.menu{display:none}}
+
+    /* small animations */
+    .fade-up{transform:translateY(12px);opacity:0;transition:all .6s cubic-bezier(.2,.9,.25,1)}
+    .in-view{transform:none;opacity:1}
+
+    /* error overlay */
+    #errorOverlay{position:fixed;right:16px;bottom:16px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;max-width:360px;color:#ffdddd;font-family:Inter;box-shadow:0 8px 30px rgba(0,0,0,0.6);display:none;z-index:9999}
+    #errorOverlay h4{margin:0 0 6px;font-size:13px;color:#ffd1d1}
+    #errorOverlay pre{white-space:pre-wrap;color:#ffd1d1;font-size:12px;max-height:180px;overflow:auto}
+    #errorOverlay .actions{margin-top:8px;display:flex;gap:8px}
+    .tiny{font-size:12px;color:var(--muted)}
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-5xl md:text-7xl font-bold mb-4">Vansh Kashyap</h1>
-    <p class="text-xl md:text-2xl max-w-xl mb-8">
-      Growth mindset | Fitness Enthusiast | Career Developer
-    </p>
-    <a href="#projects" class="px-8 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
-      View Projects
-    </a>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="max-w-4xl mx-auto px-6 py-20">
-    <h2 class="text-4xl font-semibold mb-6 border-b-2 border-indigo-600 inline-block">
-      About Me
-    </h2>
-    <p class="text-gray-300 leading-relaxed text-lg">
-      I’m Vansh, passionate about personal growth, fitness, and career development. My journey blends tech skills with a mindset focused on constant evolution and discipline. I build projects that reflect my learning and values.
-    </p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="bg-gray-800 py-16">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-4xl font-semibold mb-8 border-b-2 border-indigo-600 inline-block text-white">
-        Skills
-      </h2>
-      <ul class="grid grid-cols-2 md:grid-cols-4 gap-6 text-indigo-300 text-lg">
-        <li>JavaScript</li>
-        <li>HTML & CSS (Tailwind)</li>
-        <li>Python</li>
-        <li>Flask (Basic)</li>
-        <li>Git & GitHub</li>
-        <li>DSA Basics</li>
-        <li>Growth Mindset</li>
-        <li>Fitness & Nutrition</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="max-w-5xl mx-auto px-6 py-20">
-    <h2 class="text-4xl font-semibold mb-10 border-b-2 border-indigo-600 inline-block">
-      Projects
-    </h2>
-    <div class="grid md:grid-cols-3 gap-8">
-
-      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-2">First Portfolio</h3>
-        <p class="text-gray-300 mb-4">
-          My initial portfolio built with HTML, Tailwind CSS, and JavaScript.
-        </p>
-        <a href="https://github.com/vanshkashyap04/First_Portfolio" target="_blank" class="text-indigo-400 hover:underline">
-          View on GitHub
-        </a>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo">V</div>
+        <div>
+          <div style="font-weight:700">Vansh Kashyap</div>
+          <div style="font-size:12px;color:var(--muted)">AI-first • Web • Automation</div>
+        </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-2">Decentralized Voting System</h3>
-        <p class="text-gray-300 mb-4">
-          Blockchain-based secure voting system built as a BTech project.
-        </p>
-        <a href="#" target="_blank" class="text-indigo-400 hover:underline">
-          Coming soon
-        </a>
+      <div class="menu" id="menuLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" id="home">
+      <div>
+        <div class="eyebrow">Hello — I'm</div>
+        <h1 class="fade-up">Vansh Kashyap</h1>
+        <div class="lead fade-up">Code • Lift • Learn — I blend modern web development with AI-driven automation to build smarter products that scale.</div>
+        <div style="margin-top:18px;color:var(--muted);font-size:13px">Email: <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a></div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-2">Personal Blog</h3>
-        <p class="text-gray-300 mb-4">
-          A blog sharing growth mindset tips and fitness routines.
-        </p>
-        <a href="#" target="_blank" class="text-indigo-400 hover:underline">
-          Coming soon
-        </a>
+      <aside class="card">
+        <div style="font-weight:700">Snapshot</div>
+        <div style="margin-top:8px;color:var(--muted);font-size:13px">BTech • AI • Automation</div>
+        <div style="margin-top:12px"><a class="ghost" href="./VANSH-AUG25-RESUME-CLEANED.pdf" download>Download Resume</a></div>
+      </aside>
+    </header>
+
+    <section id="about">
+      <div class="section-head"><div class="section-title">About</div><div class="section-sub">A quick look</div></div>
+      <div class="about fade-up">
+        <div class="avatar">VK</div>
+        <div>
+          <p>I build clean web experiences and AI-driven automations. I focus on product-first design, efficient frontends, and practical AI prompts that ship real value.</p>
+          <p class="tiny">I enjoy the gym, focusing on discipline, learning, and sharing growth-focused content.</p>
+        </div>
       </div>
+    </section>
 
+    <section id="skills">
+      <div class="section-head"><div class="section-title">Skills</div><div class="section-sub">What I work with</div></div>
+      <div class="skills fade-up">
+        <div class="skill"><strong>HTML & CSS</strong><div class="tiny">Semantic markup, responsive</div></div>
+        <div class="skill"><strong>JavaScript</strong><div class="tiny">DOM, fetch, tooling</div></div>
+        <div class="skill"><strong>React.js</strong><div class="tiny">Component-driven UI</div></div>
+        <div class="skill"><strong>Tailwind</strong><div class="tiny">Utility-first styling</div></div>
+        <div class="skill"><strong>Python (Flask)</strong><div class="tiny">APIs & simple backends</div></div>
+        <div class="skill"><strong>DSA</strong><div class="tiny">Problem solving</div></div>
+        <div class="skill"><strong>AI Automation</strong><div class="tiny">Make, Zapier & scripts</div></div>
+        <div class="skill"><strong>Prompt Engineering</strong><div class="tiny">Designing useful prompts</div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head"><div class="section-title">Projects</div><div class="section-sub">Selected works</div></div>
+      <div class="projects-grid fade-up">
+        <div class="project"><h4>AI-Powered Voting System</h4><p class="tiny">Decentralized voting UI with real-time tallying.</p></div>
+        <div class="project"><h4>Netflix Clone</h4><p class="tiny">Responsive streaming-like UI focused on performance.</p></div>
+        <div class="project"><h4>Weather App (Dark Mode)</h4><p class="tiny">Location-aware app, polished UX.</p></div>
+        <div class="project"><h4>AI Prompt & Automation Suite</h4><p class="tiny">Prompt templates + automation workflows.</p></div>
+        <div class="project"><h4>Personal Analytics Dashboard</h4><p class="tiny">Lightweight dashboard with scheduled reports.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head"><div class="section-title">Contact</div><div class="section-sub">Let's collaborate</div></div>
+      <div class="contact-card fade-up">
+        <form id="contactForm">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+          </div>
+          <textarea name="message" placeholder="Your message" required></textarea>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn" type="submit">Send message</button>
+            <div id="responseMessage" style="color:var(--muted);font-size:14px"></div>
+          </div>
+        </form>
+        <div style="margin-top:8px;color:var(--muted);font-size:13px">LinkedIn: <a href="https://www.linkedin.com/in/vansh-kashyap-83b203228">Visit</a></div>
+      </div>
+    </section>
+
+    <footer>Built with ❤️ • AI + Web • <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a></footer>
+  </main>
+
+  <!-- Error overlay used to capture runtime errors like MetaMask failures -->
+  <div id="errorOverlay" role="alert" aria-live="assertive">
+    <h4 id="errorTitle">Runtime error detected</h4>
+    <pre id="errorBody">(no errors yet)</pre>
+    <div class="actions">
+      <button id="copyError" class="ghost tiny">Copy details</button>
+      <button id="dismissError" class="ghost tiny">Dismiss</button>
     </div>
-  </section>
+    <div style="margin-top:8px;color:var(--muted);font-size:12px">If this mentions MetaMask or ethereum, it's a wallet/connect attempt — ignore if you don't use wallets.</div>
+  </div>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-gray-800 py-20 px-6">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-4xl font-semibold mb-8 border-b-2 border-indigo-600 inline-block">
-        Contact Me
-      </h2>
-      <form id="contactForm" class="flex flex-col gap-4 text-gray-300">
-        <input type="text" name="name" placeholder="Your Name" required
-               class="p-3 rounded bg-gray-700 focus:outline-indigo-500" />
-        <input type="email" name="email" placeholder="Your Email" required
-               class="p-3 rounded bg-gray-700 focus:outline-indigo-500" />
-        <textarea name="message" rows="5" placeholder="Your Message" required
-                  class="p-3 rounded bg-gray-700 focus:outline-indigo-500"></textarea>
-        <button type="submit"
-                class="bg-indigo-600 hover:bg-indigo-700 transition rounded py-3 font-semibold">
-          Send Message
-        </button>
-      </form>
-      <p id="formResponse" class="mt-4 text-green-400 hidden"></p>
-    </div>
-  </section>
+  <script>
+    // --------- Configuration ---------
+    const BACKEND_URL = 'https://portfolio-backend-tbox.onrender.com/contact';
 
-  <footer class="text-center py-6 text-gray-500">
-    &copy; 2025 Vansh Kashyap. All rights reserved.
-  </footer>
+    // Safe helpers ----------------------------------------------------
+    function safeGet(id){ return typeof document !== 'undefined' ? document.getElementById(id) : null }
+    function showErrorOverlay(title, body){
+      const overlay = safeGet('errorOverlay');
+      if(!overlay) return console.warn('Error overlay not available');
+      safeGet('errorTitle').textContent = title;
+      safeGet('errorBody').textContent = body;
+      overlay.style.display = 'block';
+    }
 
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Page reload hone se rokta hai
-
-    const formData = new FormData(this);
-
-    fetch("https://portfolio-backend-tbox.onrender.com/contact", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("responseMessage").textContent = data.message;
-        document.getElementById("contactForm").reset();
-    })
-    .catch(err => {
-        console.error("Error:", err);
-        document.getElementById("responseMessage").textContent = "Something went wrong. Please try again.";
+    // Global error handlers (capture uncaught runtime errors and promises)
+    window.addEventListener && window.addEventListener('error', function(ev){
+      try{
+        const msg = (ev && (ev.error && ev.error.message)) || ev.message || String(ev);
+        // If it looks like a MetaMask/ethereum error, surface useful message
+        if(/metamask|ethereum|wallet/i.test(msg)){
+          showErrorOverlay('MetaMask / Wallet error', msg + '\n\nTip: If you are not using a wallet, you can safely ignore this.');
+        } else {
+          showErrorOverlay('Unhandled error', msg);
+        }
+        console.error('Captured error:', ev.error || ev.message || ev);
+      } catch(e){ console.error('Error in error handler', e) }
     });
-});
-</script>
+
+    window.addEventListener && window.addEventListener('unhandledrejection', function(ev){
+      try{
+        const reason = ev && (ev.reason && (ev.reason.message || ev.reason)) || String(ev);
+        if(/metamask|ethereum|wallet/i.test(reason)){
+          showErrorOverlay('MetaMask / Wallet rejection', reason + '\n\nTip: If you are not using a crypto wallet, ignore this.');
+        } else {
+          showErrorOverlay('Unhandled promise rejection', reason);
+        }
+        console.warn('Captured unhandledrejection:', reason);
+      } catch(e){ console.error('Error in rejection handler', e) }
+    });
+
+    // Defensive stub for window.ethereum to prevent random scripts from throwing
+    // NOTE: This only creates a very small harmless stub if ethereum is not present.
+    // If a real wallet exists, we do NOT override it.
+    try{
+      if(typeof window !== 'undefined' && typeof window.ethereum === 'undefined'){
+        Object.defineProperty(window, 'ethereum', {
+          configurable: true,
+          enumerable: true,
+          value: new Proxy({}, {
+            get(target, prop){
+              // Return a harmless function for common wallet methods
+              if(prop === 'request' || prop === 'enable' || prop === 'send'){
+                return function(){
+                  return Promise.reject(new Error('No wallet available in this environment (window.ethereum stub).'));
+                };
+              }
+              return undefined;
+            }
+          })
+        });
+        console.info('ethereum stub installed to prevent wallet-related runtime errors in previews.');
+      }
+    }catch(e){ console.warn('Could not install ethereum stub', e) }
+
+    // Basic scroll / reveal features ---------------------------------
+    try{
+      const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view') });
+      }, {threshold:0.12}) : null;
+      if(obs){ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el)); }
+    }catch(e){ console.warn('Reveal observer failed', e) }
+
+    // Contact form handler (robust, shows clear errors)
+    (function(){
+      const form = safeGet('contactForm');
+      const responseEl = safeGet('responseMessage');
+      if(!form) return console.warn('Contact form not found');
+
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        if(responseEl) responseEl.textContent = 'Sending...';
+        const fd = new FormData(form);
+
+        // Use fetch with a timeout to avoid hanging forever
+        const controller = new AbortController();
+        const timeout = setTimeout(()=> controller.abort(), 10000);
+
+        fetch(BACKEND_URL, {method:'POST', body: fd, signal: controller.signal})
+          .then(async r => {
+            clearTimeout(timeout);
+            if(!r.ok){
+              const text = await r.text().catch(()=>null);
+              const msg = text || `Server returned status ${r.status}`;
+              throw new Error(msg);
+            }
+            return r.json().catch(()=>({message:'Message sent (no JSON)'}));
+          })
+          .then(data => {
+            if(responseEl) responseEl.textContent = data.message || 'Message sent!';
+            form.reset();
+            setTimeout(()=>{ if(responseEl) responseEl.textContent = '' }, 4000);
+          })
+          .catch(err => {
+            const message = (err && err.message) || String(err);
+            if(responseEl) responseEl.textContent = 'Error: ' + message;
+            console.error('Contact form error:', err);
+            // Surface wallet-specific problems clearly
+            if(/metamask|ethereum|wallet/i.test(message)){
+              showErrorOverlay('MetaMask / Wallet issue', message + '\n\nThis site does not require a crypto wallet to send the contact form.');
+            }
+          });
+      });
+    })();
+
+    // Utility actions for error overlay
+    (function(){
+      const copyBtn = safeGet('copyError');
+      const dismissBtn = safeGet('dismissError');
+      copyBtn && copyBtn.addEventListener('click', ()=>{
+        const text = safeGet('errorBody').textContent || '';
+        navigator.clipboard && navigator.clipboard.writeText(text).then(()=>{
+          copyBtn.textContent = 'Copied';
+          setTimeout(()=> copyBtn.textContent = 'Copy details', 1800);
+        }).catch(()=>{ copyBtn.textContent = 'Unable to copy' });
+      });
+      dismissBtn && dismissBtn.addEventListener('click', ()=>{ const o=safeGet('errorOverlay'); if(o) o.style.display='none' });
+    })();
+
+    // Minor nav highlighting (robust)
+    try{
+      const sections = document.querySelectorAll('main section, header');
+      const navLinks = document.querySelectorAll('.nav-link');
+      if(sections && navLinks){
+        const secObserver = new IntersectionObserver((entries)=>{
+          entries.forEach(ent=>{
+            if(ent.isIntersecting){
+              navLinks.forEach(a=>a.classList.remove('active'));
+              const id = ent.target.id || 'home';
+              const active = document.querySelector(`.nav-link[href='#${id}']`);
+              if(active) active.classList.add('active');
+            }
+          });
+        }, {threshold:0.5});
+        sections.forEach(s=>secObserver.observe(s));
+      }
+    }catch(e){ console.warn('Nav highlight failed', e) }
+
+    // CTA behavior
+    try{ const hire = safeGet('hireBtn'); hire && hire.addEventListener('click', ()=>{ const c = safeGet('contact'); c && c.scrollIntoView({behavior:'smooth'}) }); }catch(e){/* ignore */}
+
+  </script>
+
 </body>
 </html>
