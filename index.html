@@ -114,35 +114,26 @@
     &copy; 2025 Vansh Kashyap. All rights reserved.
   </footer>
 
-  <script>
-    const form = document.getElementById('contactForm');
-    const responseMsg = document.getElementById('formResponse');
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Page reload hone se rokta hai
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
+    const formData = new FormData(this);
 
-      try {
-        const res = await fetch('http://localhost:5000/contact', {
-          method: 'POST',
-          body: formData,
-        });
-        const data = await res.json();
-        if (res.ok) {
-          responseMsg.textContent = data.message;
-          responseMsg.classList.remove('hidden');
-          form.reset();
-        } else {
-          responseMsg.textContent = 'Failed to send message.';
-          responseMsg.classList.remove('hidden');
-          responseMsg.classList.add('text-red-400');
-        }
-      } catch (error) {
-        responseMsg.textContent = 'Error: Could not send message.';
-        responseMsg.classList.remove('hidden');
-        responseMsg.classList.add('text-red-400');
-      }
+    fetch("https://portfolio-backend-tbox.onrender.com/contact", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("responseMessage").textContent = data.message;
+        document.getElementById("contactForm").reset();
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        document.getElementById("responseMessage").textContent = "Something went wrong. Please try again.";
     });
-  </script>
+});
+</script>
 </body>
 </html>
