@@ -1,7 +1,9 @@
+/* First, load Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Then your custom theme variables + overrides */
 :root {
   --bg: #050505;
   --card: #0f0f10;
@@ -9,6 +11,7 @@
   --accent: #00d4ff;
   --maxw: 1100px;
 }
+
 * {
   box-sizing: border-box;
 }
