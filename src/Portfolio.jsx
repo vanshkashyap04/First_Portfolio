@@ -1,161 +1,193 @@
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaPython } from 'react-icons/fa';
-import { SiTailwindcss, SiC, SiGit } from 'react-icons/si';
-import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
+import React from "react";
 
-const Portfolio = () => {
+export default function Portfolio() {
   return (
-    <>
-      <section className="pt-24 sm:pt-36 text-center py-16 px-4 sm:px-6 bg-black min-h-screen text-white">
-        <motion.div
-          className="flex flex-col items-center justify-center"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
+    <main className="max-w-[1100px] mx-auto px-6">
+      {/* Hero Section */}
+      <header
+        id="home"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-20"
+      >
+        {/* Left - Text */}
+        <div>
+          <div className="text-gray-400 font-semibold mb-3">Hello — I'm</div>
+          <h1 className="font-poppins text-4xl md:text-5xl font-bold leading-tight">
+            Vansh Kashyap
+          </h1>
+          <p className="text-gray-200 mt-4 text-lg">
+            Code • Lift • Learn — I blend modern web development with AI-driven
+            automation to build smarter products that scale.
+          </p>
+          <p className="text-gray-400 text-sm mt-3">
+            Email:{" "}
+            <a
+              href="mailto:kashyapvansh123@gmail.com"
+              className="text-cyan-400 hover:underline"
+            >
+              kashyapvansh123@gmail.com
+            </a>
+          </p>
+          <div className="mt-5">
+            <a
+              href="/VANSH-AUG25-RESUME-CLEANED.pdf"
+              download
+              className="bg-gradient-to-r from-cyan-400 to-teal-300 text-black px-4 py-2 rounded-lg font-bold"
+            >
+              Download Resume
+            </a>
+          </div>
+        </div>
+
+        {/* Right - Circular Photo */}
+        <div className="flex justify-center md:justify-end">
           <img
             src="/myphoto.jpg"
             alt="Vansh Kashyap"
-            className="w-40 h-40 rounded-full border-4 border-purple-500 shadow-lg hover:scale-105 transition duration-300 mb-6"
+            className="w-60 h-60 md:w-80 md:h-80 object-cover rounded-full border-4 border-cyan-400 shadow-lg"
           />
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-indigo-400">Hi, I'm Vansh Kashyap 👨‍💻</h1>
-        </motion.div>
-
-        <TypeAnimation
-          sequence={['Frontend Developer', 1500, 'Tech Storyteller', 1500, 'Creative Thinker', 1500]}
-          wrapper="h2"
-          speed={50}
-          className="text-xl sm:text-2xl text-gray-400 mt-4"
-          repeat={Infinity}
-        />
-
-        <p className="max-w-xl mx-auto mt-6 text-gray-300 text-lg">
-          A Computer Science graduate passionate about transforming concepts into interactive web experiences. I specialize in React.js and modern frontend ecosystems, love solving real-world problems, and bring discipline and creativity to the table — not just from tech, but from books, the gym, and storytelling.
-        </p>
-      </section>
-
-      <section className="bg-gray-900 text-white py-16 px-6 text-left">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-semibold text-indigo-400 mb-6">Experience</h2>
-          <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Content Creator – CricTracker (Internship)</h3>
-            <p className="mt-2 text-gray-300">Crafted tech-informed cricket content, IPL analyses, and engaging editorial using storytelling and SEO strategies. This internship honed my ability to communicate complex information with creativity and clarity.</p>
-            <p className="mt-2 text-sm text-gray-500">Duration: July, 2022 – January, 2023</p>
-          </div>
         </div>
-      </section>
+      </header>
 
-      <section className="bg-black text-white py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-indigo-400 mb-6">Skills & Tools ⚙️</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
-            <FaHtml5 size={40} className="text-orange-500 hover:scale-110 transition-transform duration-300" />
-            <FaCss3Alt size={40} className="text-blue-500 hover:scale-110 transition-transform duration-300" />
-            <FaJs size={40} className="text-yellow-300 hover:scale-110 transition-transform duration-300" />
-            <FaReact size={40} className="text-cyan-400 hover:scale-110 transition-transform duration-300" />
-            <SiTailwindcss size={40} className="text-teal-300 hover:scale-110 transition-transform duration-300" />
-            <FaPython size={40} className="text-yellow-400 hover:scale-110 transition-transform duration-300" />
-            <SiC size={40} className="text-gray-300 hover:scale-110 transition-transform duration-300" />
-            <SiGit size={40} className="text-orange-400 hover:scale-110 transition-transform duration-300" />
-            <FaGithub size={40} className="text-gray-400 hover:scale-110 transition-transform duration-300" />
-          </div>
+      {/* About Section */}
+      <section id="about" className="mt-16">
+        <div className="flex items-end gap-3">
+          <h2 className="font-poppins text-2xl font-bold">About</h2>
+          <p className="text-gray-400 text-sm">A quick look</p>
         </div>
-      </section>
-
-      <section id="projects" className="bg-black text-white py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold text-indigo-400 mb-12">💻 Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-          <div className="bg-gray-900 p-6 rounded-lg hover:scale-105 transition transform duration-300 shadow-lg">
-            <h3 className="text-xl font-semibold text-purple-400">Decentralized Voting System</h3>
-            <p className="text-gray-300 mt-2">A blockchain-based voting platform ensuring transparency and security using smart contracts.</p>
+        <div className="flex gap-6 items-center mt-6">
+          <div className="w-28 h-28 flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-900 to-cyan-900 font-poppins font-bold text-cyan-400 text-2xl">
+            VK
           </div>
-          <div className="bg-gray-900 p-6 rounded-lg hover:scale-105 transition transform duration-300 shadow-lg">
-            <h3 className="text-xl font-semibold text-purple-400">Netflix Clone</h3>
-            <p className="text-gray-300 mt-2">Built with React.js & TMDB API, mimicking Netflix interface with real-time data.</p>
-          </div>
-          <div className="bg-gray-900 p-6 rounded-lg hover:scale-105 transition transform duration-300 shadow-lg">
-            <h3 className="text-xl font-semibold text-purple-400">Weather App</h3>
-            <p className="text-gray-300 mt-2">Displays live weather using OpenWeatherMap API. Responsive + Dark mode.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-br from-gray-950 to-black py-20 px-6 text-center text-white">
-        <div className="max-w-xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h3 className="text-2xl font-bold text-indigo-300 mb-2">🚀 Want to see how I grow in real time?</h3>
-            <p className="text-gray-400 text-lg mb-8">
-              <a
-                href="https://linkedin.com/in/vansh-kashyap-83b203228"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-200 underline"
-              >
-                Watch my journey on LinkedIn
-              </a>
+          <div>
+            <p className="text-gray-200">
+              I build clean web experiences and AI-driven automations. I focus
+              on product-first design, efficient frontends, and practical AI
+              prompts that ship real value.
             </p>
-            <a
-              href="/resume/VANSH-RESUME-UPDATED.pdf"
-              download
-              className="inline-block mb-6 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition"
-            >
-              📄 Download My Resume
-            </a>
-            <p className="text-lg text-gray-300">
-              Or email me at
-              <a href="mailto:Kashyapvansh123@gmail.com" className="text-purple-300 underline hover:text-purple-200 ml-1">
-                Kashyapvansh123@gmail.com
-              </a>
+            <p className="text-gray-500 text-sm mt-2">
+              I enjoy the gym, focusing on discipline, learning, and sharing
+              growth-focused content.
             </p>
-          </motion.div>
+          </div>
+        </div>
+      </section>
 
-          {/* Contact Form */}
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-indigo-300 mb-4">📬 Or send me a message directly here:</h3>
-
-            <form
-              action="https://formspree.io/f/xqabrgoz"
-              method="POST"
-              onSubmit={() => alert('✅ Message sent successfully!')}
-              className="space-y-4 text-left"
+      {/* Skills Section */}
+      <section id="skills" className="mt-16">
+        <div className="flex items-end gap-3">
+          <h2 className="font-poppins text-2xl font-bold">Skills</h2>
+          <p className="text-gray-400 text-sm">What I work with</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-6">
+          {[
+            ["HTML & CSS", "Semantic markup, responsive"],
+            ["JavaScript", "DOM, fetch, tooling"],
+            ["React.js", "Component-driven UI"],
+            ["Tailwind", "Utility-first styling"],
+            ["Python (Flask)", "APIs & simple backends"],
+            ["DSA", "Problem solving"],
+            ["AI Automation", "Make, Zapier & scripts"],
+            ["Prompt Engineering", "Designing useful prompts"],
+          ].map(([title, desc]) => (
+            <div
+              key={title}
+              className="bg-[#0f0f10] p-4 rounded-xl border border-gray-800"
             >
+              <strong>{title}</strong>
+              <div className="text-gray-500 text-sm">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="mt-16">
+        <div className="flex items-end gap-3">
+          <h2 className="font-poppins text-2xl font-bold">Projects</h2>
+          <p className="text-gray-400 text-sm">Selected works</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+          {[
+            ["AI-Powered Voting System", "Decentralized voting UI with real-time tallying."],
+            ["Netflix Clone", "Responsive streaming-like UI focused on performance."],
+            ["Weather App (Dark Mode)", "Location-aware app, polished UX."],
+            ["AI Prompt & Automation Suite", "Prompt templates + automation workflows."],
+            ["Personal Analytics Dashboard", "Lightweight dashboard with scheduled reports."],
+          ].map(([title, desc]) => (
+            <div
+              key={title}
+              className="bg-[#0f0f10] p-4 rounded-xl border border-gray-800"
+            >
+              <h4 className="font-bold">{title}</h4>
+              <p className="text-gray-500 text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="mt-16 mb-20">
+        <div className="flex items-end gap-3">
+          <h2 className="font-poppins text-2xl font-bold">Contact</h2>
+          <p className="text-gray-400 text-sm">Let's collaborate</p>
+        </div>
+        <div className="bg-[#0f0f10] p-6 rounded-xl border border-gray-800 mt-6">
+          <form
+            action="https://portfolio-backend-tbox.onrender.com/contact"
+            method="POST"
+            className="grid gap-4"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder="Your name"
                 required
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="bg-transparent border border-gray-700 p-2 rounded-lg"
               />
               <input
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="Your email"
                 required
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="bg-transparent border border-gray-700 p-2 rounded-lg"
               />
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                required
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              <button
-                type="submit"
-                className="bg-purple-600 px-6 py-2 text-white rounded hover:bg-purple-700 transition w-full"
-              >
-                Send Message
-              </button>
-            </form>
+            </div>
+            <textarea
+              name="message"
+              placeholder="Your message"
+              required
+              className="bg-transparent border border-gray-700 p-2 rounded-lg min-h-[120px]"
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-cyan-400 to-teal-300 text-black px-4 py-2 rounded-lg font-bold"
+            >
+              Send message
+            </button>
+          </form>
+          <div className="text-gray-400 text-sm mt-3">
+            LinkedIn:{" "}
+            <a
+              href="https://www.linkedin.com/in/vansh-kashyap-83b203228"
+              className="text-cyan-400 hover:underline"
+            >
+              Visit
+            </a>
           </div>
         </div>
       </section>
 
-      <footer className="bg-black text-center py-6 border-t border-gray-700 text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} Vansh Kashyap • Full of code, curiosity, and caffeine ☕
+      {/* Footer */}
+      <footer className="text-gray-500 text-sm text-center pb-10">
+        Built with ❤️ • AI + Web •{" "}
+        <a
+          href="mailto:kashyapvansh123@gmail.com"
+          className="text-cyan-400 hover:underline"
+        >
+          kashyapvansh123@gmail.com
+        </a>
       </footer>
-    </>
+    </main>
   );
-};
-
-export default Portfolio;
+}
