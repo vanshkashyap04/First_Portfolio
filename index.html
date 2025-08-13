@@ -25,7 +25,6 @@
     .menu a{color:#bcd7e3;padding:8px 10px;border-radius:8px;font-weight:600}
 
     header.hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:80px 0}
-    .hero-photo img{max-width:100%;height:auto;border-radius:12px}
     .eyebrow{color:var(--muted);font-weight:600;margin-bottom:12px}
     h1{font-family:Poppins;font-size:44px;line-height:1.02;margin:0 0 10px}
     .lead{color:#cfeefb;opacity:0.95;font-weight:500;margin-bottom:18px}
@@ -51,7 +50,7 @@
     .contact-card{display:grid;gap:12px;padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.03)}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:#e6eef3}
-    textarea{min-height:120px;grid-column:span 2}
+    textarea{min-height:120px;width:100%}
 
     footer{margin:40px 0 80px;color:var(--muted);font-size:14px;text-align:center}
 
@@ -95,19 +94,30 @@
   </nav>
 
   <main>
+    <!-- HERO SECTION -->
     <header class="hero" id="home">
+      <!-- Left: Text -->
       <div>
         <div class="eyebrow">Hello — I'm</div>
         <h1 class="fade-up">Vansh Kashyap</h1>
-        <div class="lead fade-up">Code • Lift • Learn — I blend modern web development with AI-driven automation to build smarter products that scale.</div>
-        <div style="margin-top:18px;color:var(--muted);font-size:13px">Email: <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a></div>
+        <div class="lead fade-up">
+          Code • Lift • Learn — I blend modern web development with AI-driven automation to build smarter products that scale.
+        </div>
+        <div style="margin-top:18px;color:var(--muted);font-size:13px">
+          Email: <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a>
+        </div>
+        <div style="margin-top:12px">
+          <a class="ghost" href="./VANSH-AUG25-RESUME-CLEANED.pdf" download>Download Resume</a>
+        </div>
       </div>
 
+      <!-- Right: Photo -->
       <div class="hero-photo">
-        <img src="./public/myphoto.jpg" alt="Vansh Kashyap">
+        <img src="./public/myphoto.jpg" alt="Vansh Kashyap" style="width:100%;max-width:350px;border-radius:50%;object-fit:cover;display:block;margin:auto;">
       </div>
     </header>
 
+    <!-- ABOUT -->
     <section id="about">
       <div class="section-head"><div class="section-title">About</div><div class="section-sub">A quick look</div></div>
       <div class="about fade-up">
@@ -119,6 +129,7 @@
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
       <div class="section-head"><div class="section-title">Skills</div><div class="section-sub">What I work with</div></div>
       <div class="skills fade-up">
@@ -133,6 +144,7 @@
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="section-head"><div class="section-title">Projects</div><div class="section-sub">Selected works</div></div>
       <div class="projects-grid fade-up">
@@ -144,6 +156,7 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
       <div class="section-head"><div class="section-title">Contact</div><div class="section-sub">Let's collaborate</div></div>
       <div class="contact-card fade-up">
@@ -152,7 +165,9 @@
             <input type="text" name="name" placeholder="Your name" required />
             <input type="email" name="email" placeholder="Your email" required />
           </div>
-          <textarea name="message" placeholder="Your message" required></textarea>
+          <div class="form-row">
+            <textarea name="message" placeholder="Your message" required></textarea>
+          </div>
           <div style="display:flex;gap:10px;align-items:center">
             <button class="btn" type="submit">Send message</button>
             <div id="responseMessage" style="color:var(--muted);font-size:14px"></div>
@@ -178,7 +193,7 @@
 
   <script>
     const BACKEND_URL = 'https://portfolio-backend-tbox.onrender.com/contact';
-    function safeGet(id){ return typeof document !== 'undefined' ? document.getElementById(id) : null }
+    function safeGet(id){ return document.getElementById(id) }
     function showErrorOverlay(title, body){
       const overlay = safeGet('errorOverlay');
       if(!overlay) return;
@@ -187,24 +202,20 @@
       overlay.style.display = 'block';
     }
     window.addEventListener('error', function(ev){
-      try{
-        const msg = (ev && (ev.error && ev.error.message)) || ev.message || String(ev);
-        if(/metamask|ethereum|wallet/i.test(msg)){
-          showErrorOverlay('MetaMask / Wallet error', msg);
-        } else {
-          showErrorOverlay('Unhandled error', msg);
-        }
-      } catch(e){}
+      const msg = (ev.error && ev.error.message) || ev.message || String(ev);
+      if(/metamask|ethereum|wallet/i.test(msg)){
+        showErrorOverlay('MetaMask / Wallet error', msg);
+      } else {
+        showErrorOverlay('Unhandled error', msg);
+      }
     });
     window.addEventListener('unhandledrejection', function(ev){
-      try{
-        const reason = ev && (ev.reason && (ev.reason.message || ev.reason)) || String(ev);
-        if(/metamask|ethereum|wallet/i.test(reason)){
-          showErrorOverlay('MetaMask / Wallet rejection', reason);
-        } else {
-          showErrorOverlay('Unhandled promise rejection', reason);
-        }
-      } catch(e){}
+      const reason = (ev.reason && (ev.reason.message || ev.reason)) || String(ev);
+      if(/metamask|ethereum|wallet/i.test(reason)){
+        showErrorOverlay('MetaMask / Wallet rejection', reason);
+      } else {
+        showErrorOverlay('Unhandled promise rejection', reason);
+      }
     });
     (function(){
       const form = safeGet('contactForm');
@@ -214,29 +225,18 @@
         ev.preventDefault();
         if(responseEl) responseEl.textContent = 'Sending...';
         const fd = new FormData(form);
-        const controller = new AbortController();
-        const timeout = setTimeout(()=> controller.abort(), 10000);
-        fetch(BACKEND_URL, {method:'POST', body: fd, signal: controller.signal})
-          .then(async r => {
-            clearTimeout(timeout);
-            if(!r.ok){
-              const text = await r.text().catch(()=>null);
-              throw new Error(text || `Server returned status ${r.status}`);
-            }
-            return r.json().catch(()=>({message:'Message sent'}));
-          })
+        fetch(BACKEND_URL, {method:'POST', body: fd})
+          .then(r => r.ok ? r.json() : Promise.reject(new Error(`Server error ${r.status}`)))
           .then(data => {
-            if(responseEl) responseEl.textContent = data.message || 'Message sent!';
+            responseEl.textContent = data.message || 'Message sent!';
             form.reset();
-            setTimeout(()=>{ if(responseEl) responseEl.textContent = '' }, 4000);
+            setTimeout(()=>{ responseEl.textContent = '' }, 4000);
           })
           .catch(err => {
-            const message = (err && err.message) || String(err);
-            if(responseEl) responseEl.textContent = 'Error: ' + message;
+            responseEl.textContent = 'Error: ' + err.message;
           });
       });
     })();
   </script>
-
 </body>
 </html>
