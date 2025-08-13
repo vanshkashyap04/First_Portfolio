@@ -16,14 +16,12 @@ export default function Portfolio() {
           </div>
           <div style={{ marginTop: "18px", color: "var(--muted)", fontSize: "13px" }}>
             Email:{" "}
-            <a href="mailto:kashyapvansh123@gmail.com">
-              kashyapvansh123@gmail.com
-            </a>
+            <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a>
           </div>
           <div style={{ marginTop: "12px" }}>
             <a
               className="ghost"
-              href="/VANSH-AUG25-RESUME-CLEANED.pdf"
+              href={process.env.PUBLIC_URL + "/VANSH-AUG25-RESUME-CLEANED.pdf"}
               download
             >
               Download Resume
@@ -34,7 +32,7 @@ export default function Portfolio() {
         {/* Right: Photo */}
         <div className="hero-photo">
           <img
-            src="/myphoto.jpg"
+            src={process.env.PUBLIC_URL + "/myphoto.jpg"}
             alt="Vansh Kashyap"
             style={{
               width: "100%",
@@ -42,7 +40,7 @@ export default function Portfolio() {
               borderRadius: "50%",
               objectFit: "cover",
               display: "block",
-              margin: "auto",
+              margin: "auto"
             }}
           />
         </div>
@@ -58,9 +56,9 @@ export default function Portfolio() {
           <div className="avatar">VK</div>
           <div>
             <p>
-              I build clean web experiences and AI-driven automations. I focus
-              on product-first design, efficient frontends, and practical AI
-              prompts that ship real value.
+              I build clean web experiences and AI-driven automations. I focus on
+              product-first design, efficient frontends, and practical AI prompts
+              that ship real value.
             </p>
             <p className="tiny">
               I enjoy the gym, focusing on discipline, learning, and sharing
@@ -121,15 +119,11 @@ export default function Portfolio() {
         <div className="projects-grid fade-up">
           <div className="project">
             <h4>AI-Powered Voting System</h4>
-            <p className="tiny">
-              Decentralized voting UI with real-time tallying.
-            </p>
+            <p className="tiny">Decentralized voting UI with real-time tallying.</p>
           </div>
           <div className="project">
             <h4>Netflix Clone</h4>
-            <p className="tiny">
-              Responsive streaming-like UI focused on performance.
-            </p>
+            <p className="tiny">Responsive streaming-like UI focused on performance.</p>
           </div>
           <div className="project">
             <h4>Weather App (Dark Mode)</h4>
@@ -137,15 +131,11 @@ export default function Portfolio() {
           </div>
           <div className="project">
             <h4>AI Prompt & Automation Suite</h4>
-            <p className="tiny">
-              Prompt templates + automation workflows.
-            </p>
+            <p className="tiny">Prompt templates + automation workflows.</p>
           </div>
           <div className="project">
             <h4>Personal Analytics Dashboard</h4>
-            <p className="tiny">
-              Lightweight dashboard with scheduled reports.
-            </p>
+            <p className="tiny">Lightweight dashboard with scheduled reports.</p>
           </div>
         </div>
       </section>
@@ -157,14 +147,31 @@ export default function Portfolio() {
           <div className="section-sub">Let's collaborate</div>
         </div>
         <div className="contact-card fade-up">
-          <form id="contactForm">
+          <form
+            id="contactForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              fetch("https://portfolio-backend-tbox.onrender.com/contact", {
+                method: "POST",
+                body: formData,
+              })
+                .then((r) =>
+                  r.ok
+                    ? r.json()
+                    : Promise.reject(new Error(`Server error ${r.status}`))
+                )
+                .then((data) => {
+                  alert(data.message || "Message sent!");
+                  e.target.reset();
+                })
+                .catch((err) => {
+                  alert("Error: " + err.message);
+                });
+            }}
+          >
             <div className="form-row">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                required
-              />
+              <input type="text" name="name" placeholder="Your name" required />
               <input
                 type="email"
                 name="email"
@@ -173,29 +180,15 @@ export default function Portfolio() {
               />
             </div>
             <div className="form-row">
-              <textarea
-                name="message"
-                placeholder="Your message"
-                required
-              ></textarea>
+              <textarea name="message" placeholder="Your message" required />
             </div>
             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
               <button className="btn" type="submit">
                 Send message
               </button>
-              <div
-                id="responseMessage"
-                style={{ color: "var(--muted)", fontSize: "14px" }}
-              ></div>
             </div>
           </form>
-          <div
-            style={{
-              marginTop: "8px",
-              color: "var(--muted)",
-              fontSize: "13px",
-            }}
-          >
+          <div style={{ marginTop: "8px", color: "var(--muted)", fontSize: "13px" }}>
             LinkedIn:{" "}
             <a href="https://www.linkedin.com/in/vansh-kashyap-83b203228">
               Visit
