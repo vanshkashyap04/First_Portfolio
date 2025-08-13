@@ -25,6 +25,7 @@
     .menu a{color:#bcd7e3;padding:8px 10px;border-radius:8px;font-weight:600}
 
     header.hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:80px 0}
+    .hero-photo img{max-width:100%;height:auto;border-radius:12px}
     .eyebrow{color:var(--muted);font-weight:600;margin-bottom:12px}
     h1{font-family:Poppins;font-size:44px;line-height:1.02;margin:0 0 10px}
     .lead{color:#cfeefb;opacity:0.95;font-weight:500;margin-bottom:18px}
@@ -50,11 +51,14 @@
     .contact-card{display:grid;gap:12px;padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.03)}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:#e6eef3}
-    textarea{min-height:120px}
+    textarea{min-height:120px;grid-column:span 2}
 
     footer{margin:40px 0 80px;color:var(--muted);font-size:14px;text-align:center}
 
-    @media(max-width:880px){header.hero{grid-template-columns:1fr;padding:40px 0}.menu{display:none}}
+    @media(max-width:880px){
+      header.hero{grid-template-columns:1fr;padding:40px 0;text-align:center}
+      .hero-photo{order:-1;margin-bottom:20px}
+    }
 
     /* small animations */
     .fade-up{transform:translateY(12px);opacity:0;transition:all .6s cubic-bezier(.2,.9,.25,1)}
@@ -99,11 +103,9 @@
         <div style="margin-top:18px;color:var(--muted);font-size:13px">Email: <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a></div>
       </div>
 
-      <aside class="card">
-        <div style="font-weight:700">Snapshot</div>
-        <div style="margin-top:8px;color:var(--muted);font-size:13px">BTech • AI • Automation</div>
-        <div style="margin-top:12px"><a class="ghost" href="./VANSH-AUG25-RESUME-CLEANED.pdf" download>Download Resume</a></div>
-      </aside>
+      <div class="hero-photo">
+        <img src="./public/myphoto.jpg" alt="Vansh Kashyap">
+      </div>
     </header>
 
     <section id="about">
@@ -163,7 +165,7 @@
     <footer>Built with ❤️ • AI + Web • <a href="mailto:kashyapvansh123@gmail.com">kashyapvansh123@gmail.com</a></footer>
   </main>
 
-  <!-- Error overlay used to capture runtime errors like MetaMask failures -->
+  <!-- Error overlay -->
   <div id="errorOverlay" role="alert" aria-live="assertive">
     <h4 id="errorTitle">Runtime error detected</h4>
     <pre id="errorBody">(no errors yet)</pre>
@@ -175,101 +177,53 @@
   </div>
 
   <script>
-    // --------- Configuration ---------
     const BACKEND_URL = 'https://portfolio-backend-tbox.onrender.com/contact';
-
-    // Safe helpers ----------------------------------------------------
     function safeGet(id){ return typeof document !== 'undefined' ? document.getElementById(id) : null }
     function showErrorOverlay(title, body){
       const overlay = safeGet('errorOverlay');
-      if(!overlay) return console.warn('Error overlay not available');
+      if(!overlay) return;
       safeGet('errorTitle').textContent = title;
       safeGet('errorBody').textContent = body;
       overlay.style.display = 'block';
     }
-
-    // Global error handlers (capture uncaught runtime errors and promises)
-    window.addEventListener && window.addEventListener('error', function(ev){
+    window.addEventListener('error', function(ev){
       try{
         const msg = (ev && (ev.error && ev.error.message)) || ev.message || String(ev);
-        // If it looks like a MetaMask/ethereum error, surface useful message
         if(/metamask|ethereum|wallet/i.test(msg)){
-          showErrorOverlay('MetaMask / Wallet error', msg + '\n\nTip: If you are not using a wallet, you can safely ignore this.');
+          showErrorOverlay('MetaMask / Wallet error', msg);
         } else {
           showErrorOverlay('Unhandled error', msg);
         }
-        console.error('Captured error:', ev.error || ev.message || ev);
-      } catch(e){ console.error('Error in error handler', e) }
+      } catch(e){}
     });
-
-    window.addEventListener && window.addEventListener('unhandledrejection', function(ev){
+    window.addEventListener('unhandledrejection', function(ev){
       try{
         const reason = ev && (ev.reason && (ev.reason.message || ev.reason)) || String(ev);
         if(/metamask|ethereum|wallet/i.test(reason)){
-          showErrorOverlay('MetaMask / Wallet rejection', reason + '\n\nTip: If you are not using a crypto wallet, ignore this.');
+          showErrorOverlay('MetaMask / Wallet rejection', reason);
         } else {
           showErrorOverlay('Unhandled promise rejection', reason);
         }
-        console.warn('Captured unhandledrejection:', reason);
-      } catch(e){ console.error('Error in rejection handler', e) }
+      } catch(e){}
     });
-
-    // Defensive stub for window.ethereum to prevent random scripts from throwing
-    // NOTE: This only creates a very small harmless stub if ethereum is not present.
-    // If a real wallet exists, we do NOT override it.
-    try{
-      if(typeof window !== 'undefined' && typeof window.ethereum === 'undefined'){
-        Object.defineProperty(window, 'ethereum', {
-          configurable: true,
-          enumerable: true,
-          value: new Proxy({}, {
-            get(target, prop){
-              // Return a harmless function for common wallet methods
-              if(prop === 'request' || prop === 'enable' || prop === 'send'){
-                return function(){
-                  return Promise.reject(new Error('No wallet available in this environment (window.ethereum stub).'));
-                };
-              }
-              return undefined;
-            }
-          })
-        });
-        console.info('ethereum stub installed to prevent wallet-related runtime errors in previews.');
-      }
-    }catch(e){ console.warn('Could not install ethereum stub', e) }
-
-    // Basic scroll / reveal features ---------------------------------
-    try{
-      const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view') });
-      }, {threshold:0.12}) : null;
-      if(obs){ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el)); }
-    }catch(e){ console.warn('Reveal observer failed', e) }
-
-    // Contact form handler (robust, shows clear errors)
     (function(){
       const form = safeGet('contactForm');
       const responseEl = safeGet('responseMessage');
-      if(!form) return console.warn('Contact form not found');
-
+      if(!form) return;
       form.addEventListener('submit', function(ev){
         ev.preventDefault();
         if(responseEl) responseEl.textContent = 'Sending...';
         const fd = new FormData(form);
-
-        // Use fetch with a timeout to avoid hanging forever
         const controller = new AbortController();
         const timeout = setTimeout(()=> controller.abort(), 10000);
-
         fetch(BACKEND_URL, {method:'POST', body: fd, signal: controller.signal})
           .then(async r => {
             clearTimeout(timeout);
             if(!r.ok){
               const text = await r.text().catch(()=>null);
-              const msg = text || `Server returned status ${r.status}`;
-              throw new Error(msg);
+              throw new Error(text || `Server returned status ${r.status}`);
             }
-            return r.json().catch(()=>({message:'Message sent (no JSON)'}));
+            return r.json().catch(()=>({message:'Message sent'}));
           })
           .then(data => {
             if(responseEl) responseEl.textContent = data.message || 'Message sent!';
@@ -279,51 +233,9 @@
           .catch(err => {
             const message = (err && err.message) || String(err);
             if(responseEl) responseEl.textContent = 'Error: ' + message;
-            console.error('Contact form error:', err);
-            // Surface wallet-specific problems clearly
-            if(/metamask|ethereum|wallet/i.test(message)){
-              showErrorOverlay('MetaMask / Wallet issue', message + '\n\nThis site does not require a crypto wallet to send the contact form.');
-            }
           });
       });
     })();
-
-    // Utility actions for error overlay
-    (function(){
-      const copyBtn = safeGet('copyError');
-      const dismissBtn = safeGet('dismissError');
-      copyBtn && copyBtn.addEventListener('click', ()=>{
-        const text = safeGet('errorBody').textContent || '';
-        navigator.clipboard && navigator.clipboard.writeText(text).then(()=>{
-          copyBtn.textContent = 'Copied';
-          setTimeout(()=> copyBtn.textContent = 'Copy details', 1800);
-        }).catch(()=>{ copyBtn.textContent = 'Unable to copy' });
-      });
-      dismissBtn && dismissBtn.addEventListener('click', ()=>{ const o=safeGet('errorOverlay'); if(o) o.style.display='none' });
-    })();
-
-    // Minor nav highlighting (robust)
-    try{
-      const sections = document.querySelectorAll('main section, header');
-      const navLinks = document.querySelectorAll('.nav-link');
-      if(sections && navLinks){
-        const secObserver = new IntersectionObserver((entries)=>{
-          entries.forEach(ent=>{
-            if(ent.isIntersecting){
-              navLinks.forEach(a=>a.classList.remove('active'));
-              const id = ent.target.id || 'home';
-              const active = document.querySelector(`.nav-link[href='#${id}']`);
-              if(active) active.classList.add('active');
-            }
-          });
-        }, {threshold:0.5});
-        sections.forEach(s=>secObserver.observe(s));
-      }
-    }catch(e){ console.warn('Nav highlight failed', e) }
-
-    // CTA behavior
-    try{ const hire = safeGet('hireBtn'); hire && hire.addEventListener('click', ()=>{ const c = safeGet('contact'); c && c.scrollIntoView({behavior:'smooth'}) }); }catch(e){/* ignore */}
-
   </script>
 
 </body>
