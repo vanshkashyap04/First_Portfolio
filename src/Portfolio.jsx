@@ -21,7 +21,7 @@ export default function Portfolio() {
           <div style={{ marginTop: "12px" }}>
             <a
               className="ghost"
-              href={process.env.PUBLIC_URL + "/VANSH-AUG25-RESUME-CLEANED.pdf"}
+              href={"/resume/VANSH-RESUME-UPDATED.pdf"}
               download
             >
               Download Resume
@@ -32,7 +32,7 @@ export default function Portfolio() {
         {/* Right: Photo */}
         <div className="hero-photo">
           <img
-            src={process.env.PUBLIC_URL + "/myphoto.jpg"}
+            src={"/myphoto.jpg"}
             alt="Vansh Kashyap"
             style={{
               width: "100%",
