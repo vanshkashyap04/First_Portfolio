@@ -1,8 +1,37 @@
+:root {
+  --bg: #050505;
+  --card: #0f0f10;
+  --muted: #9aa4ab;
+  --accent: #00d4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: #e6eef3;
+  font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Optional: custom styles */
-html {
-  scroll-behavior: smooth;
-}
