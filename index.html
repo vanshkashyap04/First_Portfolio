@@ -20,7 +20,7 @@
     .nav{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:center;pointer-events:none}
     .nav-inner{width:100%;max-width:var(--maxw);pointer-events:all;background:transparent;display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
     .brand{display:flex;gap:10px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7bffec);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:800;color:#020617}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7bffec);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:800;font-size:28px;color:#00131a}
     .menu{display:flex;gap:18px;align-items:center}
     .menu a{color:#bcd7e3;padding:8px 10px;border-radius:8px;font-weight:600}
 
@@ -39,7 +39,7 @@
     .section-sub{color:var(--muted);font-size:14px}
 
     .about{display:flex;gap:24px;align-items:center}
-    .avatar{width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,#06121a 0%, rgba(0,212,255,0.06) 100%);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:800;color:var(--accent);font-size:28px}
+    .avatar{width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,#06121a 0%, rgba(0,212,255,0.06) 100%);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-size:42px;font-weight:700;color:#00d4ff}
 
     .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:10px}
     .skill{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
@@ -64,7 +64,7 @@
     .in-view{transform:none;opacity:1}
 
     /* error overlay */
-    #errorOverlay{position:fixed;right:16px;bottom:16px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;max-width:360px;color:#ffdddd;font-family:Inter;box-shadow:0 8px 30px rgba(0,0,0,0.6);display:none;z-index:9999}
+    #errorOverlay{position:fixed;right:16px;bottom:16px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;max-width:360px;color:#ffdddd;font-family:Inter;box-shadow:0 4px 24px #0008;z-index:1000;display:none;}
     #errorOverlay h4{margin:0 0 6px;font-size:13px;color:#ffd1d1}
     #errorOverlay pre{white-space:pre-wrap;color:#ffd1d1;font-size:12px;max-height:180px;overflow:auto}
     #errorOverlay .actions{margin-top:8px;display:flex;gap:8px}
@@ -181,7 +181,7 @@
   </main>
 
   <!-- Error overlay -->
-  <div id="errorOverlay" role="alert" aria-live="assertive">
+  <div id="errorOverlay" role="alert" aria-live="assertive" style="display:none;">
     <h4 id="errorTitle">Runtime error detected</h4>
     <pre id="errorBody">(no errors yet)</pre>
     <div class="actions">
@@ -201,6 +201,30 @@
       safeGet('errorBody').textContent = body;
       overlay.style.display = 'block';
     }
+    function hideErrorOverlay() {
+      const overlay = safeGet('errorOverlay');
+      if(overlay) overlay.style.display = 'none';
+    }
+    // Dismiss and Copy handlers for error overlay
+    document.addEventListener('DOMContentLoaded', function() {
+      const overlay = safeGet('errorOverlay');
+      if(overlay) overlay.style.display = 'none';
+
+      const copyBtn = safeGet('copyError');
+      if(copyBtn) {
+        copyBtn.addEventListener('click', function(){
+          const errText = safeGet('errorBody').textContent;
+          navigator.clipboard.writeText(errText);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(()=>{ copyBtn.textContent = 'Copy details'; }, 1500);
+        });
+      }
+      const dismissBtn = safeGet('dismissError');
+      if(dismissBtn) {
+        dismissBtn.addEventListener('click', hideErrorOverlay);
+      }
+    });
+
     window.addEventListener('error', function(ev){
       const msg = (ev.error && ev.error.message) || ev.message || String(ev);
       if(/metamask|ethereum|wallet/i.test(msg)){
@@ -235,6 +259,10 @@
           .catch(err => {
             responseEl.textContent = 'Error: ' + err.message;
           });
+      });
+      // Optional: Hide response message on form focus
+      form.addEventListener('focusin', function(){
+        if(responseEl) responseEl.textContent = '';
       });
     })();
   </script>
