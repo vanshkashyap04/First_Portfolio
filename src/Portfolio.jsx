@@ -29,17 +29,15 @@ export default function Portfolio() {
           </div>
           <a
             className="border border-gray-600 px-4 py-2 rounded-lg text-gray-300 hover:border-[#00d4ff] hover:text-[#00d4ff]"
-            href="First_Portfolio/VANSH-AUG25-RESUME-CLEANED.pdf"
-            download
-          >
-            Download Resume
+            href="/VANSH-AUG25-RESUME-CLEANED.pdf"
+            download > Download Resume
           </a>
         </div>
 
         {/* Right Photo */}
         <div className="flex justify-center hero-photo">
           <img
-            src="First_Portfolio/public/myphoto.jpg"
+            src="/public/myphoto.jpg"
             alt="Vansh Kashyap"
             className="w-full max-w-[350px] rounded-full object-cover"
           />
