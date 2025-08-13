@@ -39,7 +39,7 @@ export default function Portfolio() {
         {/* Right Photo */}
         <div className="flex justify-center hero-photo">
           <img
-            src="./public/myphoto.jpg"
+            src="/myphoto.jpg"
             alt="Vansh Kashyap"
             className="w-full max-w-[350px] rounded-full object-cover"
           />
