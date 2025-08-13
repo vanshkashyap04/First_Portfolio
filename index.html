@@ -1,45 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vansh Kashyap — Portfolio</title>
-    <meta
-      name="description"
-      content="Vansh Kashyap — AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale."
-    />
-
+    <meta name="description" content="Vansh Kashyap — AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale.">
+    
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
     <!-- Open Graph for social preview -->
-    <meta property="og:title" content="Vansh Kashyap — Portfolio" />
-    <meta
-      property="og:description"
-      content="AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale."
-    />
-    <meta property="og:image" content="/preview.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vanshka-portfolio.netlify.app/" />
-
+    <meta property="og:title" content="Vansh Kashyap — Portfolio">
+    <meta property="og:description" content="AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale.">
+    <meta property="og:image" content="/preview.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vanshka-portfolio.netlify.app/">
+    
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Vansh Kashyap — Portfolio" />
-    <meta
-      name="twitter:description"
-      content="AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale."
-    />
-    <meta name="twitter:image" content="/preview.png" />
-
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vansh Kashyap — Portfolio">
+    <meta name="twitter:description" content="AI-first Web Developer & Automation Specialist. Blending modern web development with AI to build smarter products that scale.">
+    <meta name="twitter:image" content="/preview.png">
+    
     <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --card: #0f0f10;
+            --muted: #9aa4ab;
+            --accent: #00d4ff;
+            --maxw: 1100px;
+        }
+        
+        body {
+            background: var(--bg);
+            color: #e6eef3;
+            font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <main class="max-w-[1100px] mx-auto px-6 text-[#e6eef3]">
+        <!-- HERO -->
+        <header id="home" class="grid grid-cols-1 md:grid-cols-[1fr_420px] gap-8 items-center py-20">
+            <!-- Left -->
+            <div>
+                <div class="text-gray-400 font-semibold mb-3">Hello — I'm</div>
+                <h1 class="font-poppins text-4xl md:text-5xl font-bold mb-3">Vansh Kashyap</h1>
+                <p class="text-gray-200 mb-4">
+                    Code • Lift • Learn — I blend modern web development with AI-driven automation to build smarter products that scale.
+                </p>
+                <div class="text-sm text-gray-400 mb-3">
+                    Email: 
+                    <a href="mailto:kashyapvansh123@gmail.com" class="text-[#00d4ff]">
+                        kashyapvansh123@gmail.com
+                    </a>
+                </div>
+                <a class="border border-gray-600 px-4 py-2 rounded-lg text-gray-300 hover:border-[#00d4ff] hover:text-[#00d4ff]" 
+                   href="./VANSH-AUG25-RESUME-CLEANED.pdf" download>
+                    Download Resume
+                </a>
+            </div>
+
+            <!-- Right Photo -->
+            <div class="flex justify-center hero-photo">
+                <img src="/myphoto.jpg" alt="Vansh Kashyap" class="w-full max-w-[350px] rounded-full object-cover">
+            </div>
+        </header>
+
+        <!-- ABOUT -->
+        <section id="about" class="mt-20">
+            <div class="flex items-end gap-3 mb-4">
+                <div class="font-poppins text-xl font-bold">About</div>
+                <div class="text-sm text-gray-400">A quick look</div>
+            </div>
+            <div class="flex gap-6 items-center">
+                <div class="w-[120px] h-[120px] rounded-lg bg-[#06121a] flex items-center justify-center font-poppins font-bold text-[#00d4ff] text-2xl">
+                    VK
+                </div>
+                <div>
+                    <p class="mb-2">
+                        I build clean web experiences and AI-driven automations. I focus on product-first design, efficient frontends, and practical AI prompts that ship real value.
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        I enjoy the gym, focusing on discipline, learning, and sharing growth-focused content.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="mt-20">
+            <div class="flex items-end gap-3 mb-4">
+                <div class="font-poppins text-xl font-bold">Skills</div>
+                <div class="text-sm text-gray-400">What I work with</div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>HTML & CSS</strong>
+                    <div class="text-xs text-gray-400">Semantic markup, responsive</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>JavaScript</strong>
+                    <div class="text-xs text-gray-400">DOM, fetch, tooling</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>React.js</strong>
+                    <div class="text-xs text-gray-400">Component-driven UI</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>Tailwind</strong>
+                    <div class="text-xs text-gray-400">Utility-first styling</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>Python (Flask)</strong>
+                    <div class="text-xs text-gray-400">APIs & simple backends</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>DSA</strong>
+                    <div class="text-xs text-gray-400">Problem solving</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>AI Automation</strong>
+                    <div class="text-xs text-gray-400">Make, Zapier & scripts</div>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <strong>Prompt Engineering</strong>
+                    <div class="text-xs text-gray-400">Designing useful prompts</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="mt-20">
+            <div class="flex items-end gap-3 mb-4">
+                <div class="font-poppins text-xl font-bold">Projects</div>
+                <div class="text-sm text-gray-400">Selected works</div>
+            </div>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-semibold">AI-Powered Voting System</h4>
+                    <p class="text-xs text-gray-400">Decentralized voting UI with real-time tallying.</p>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-semibold">Netflix Clone</h4>
+                    <p class="text-xs text-gray-400">Responsive streaming-like UI focused on performance.</p>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-semibold">Weather App (Dark Mode)</h4>
+                    <p class="text-xs text-gray-400">Location-aware app, polished UX.</p>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-semibold">AI Prompt & Automation Suite</h4>
+                    <p class="text-xs text-gray-400">Prompt templates + automation workflows.</p>
+                </div>
+                <div class="bg-[#0f0f10] p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-semibold">Personal Analytics Dashboard</h4>
+                    <p class="text-xs text-gray-400">Lightweight dashboard with scheduled reports.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="mt-20">
+            <div class="flex items-end gap-3 mb-4">
+                <div class="font-poppins text-xl font-bold">Contact</div>
+                <div class="text-sm text-gray-400">Let's collaborate</div>
+            </div>
+            <div class="bg-[#0f0f10] p-6 rounded-lg border border-gray-800 space-y-4">
+                <form id="contactForm" action="https://portfolio-backend-tbox.onrender.com/contact" method="POST" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" name="name" placeholder="Your name" required 
+                               class="bg-transparent border border-gray-700 p-2 rounded-lg">
+                        <input type="email" name="email" placeholder="Your email" required 
+                               class="bg-transparent border border-gray-700 p-2 rounded-lg">
+                    </div>
+                    <textarea name="message" placeholder="Your message" required 
+                              class="bg-transparent border border-gray-700 p-2 rounded-lg min-h-[120px] w-full"></textarea>
+                    <button type="submit" 
+                            class="bg-gradient-to-r from-[#00d4ff] to-[#7bffec] text-black px-4 py-2 rounded-lg font-bold">
+                        Send message
+                    </button>
+                </form>
+                <div class="text-sm text-gray-400">
+                    LinkedIn: 
+                    <a href="https://www.linkedin.com/in/vansh-kashyap-83b203228" class="text-[#00d4ff]">
+                        Visit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-20 mb-10 text-center text-sm text-gray-500">
+            Built with ❤️ • AI + Web • 
+            <a href="mailto:kashyapvansh123@gmail.com" class="text-[#00d4ff]">
+                kashyapvansh123@gmail.com
+            </a>
+        </footer>
+    </main>
 </body>
 </html>
